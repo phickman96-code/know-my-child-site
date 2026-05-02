@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The story behind Know My Child — built by Dr. Philip Van Hickman, a school psychologist and parent who saw the gap in care every single day.">
+  <meta name="theme-color" content="#5B4FC4">
+  <title>About — Know My Child</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #5B4FC4;
+      --primary-dark: #3E35A0;
+      --primary-muted: #EAE8F9;
+      --bg: #FAFAFD;
+      --surface: #FFFFFF;
+      --ink: #1A1635;
+      --ink-soft: #4B466A;
+      --ink-mute: #7B7595;
+      --line: #E8E6F0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink); line-height: 1.55; background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 17px; color: var(--ink);
+    }
+    .brand-mark {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary-muted);
+      display: grid; place-items: center;
+      color: var(--primary); font-size: 18px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--ink-soft); font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: var(--primary); text-decoration: none; }
+    .nav-cta {
+      background: var(--ink); color: #fff;
+      padding: 9px 16px; border-radius: 999px;
+      font-weight: 600; font-size: 14px;
+    }
+    .nav-cta:hover { background: var(--primary); text-decoration: none; }
+    @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+    .hero {
+      max-width: 760px; margin: 0 auto;
+      padding: 80px 24px 40px; text-align: center;
+    }
+    .eyebrow {
+      display: inline-block; background: var(--primary-muted);
+      color: var(--primary); padding: 6px 14px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+    }
+    .subhead {
+      font-size: 19px; color: var(--ink-soft);
+      margin-top: 22px; line-height: 1.6;
+    }
+
+    article {
+      max-width: 720px; margin: 0 auto;
+      padding: 40px 24px 80px;
+      font-size: 18px; line-height: 1.75; color: var(--ink-soft);
+    }
+    article p { margin-bottom: 24px; }
+    article p strong { color: var(--ink); font-weight: 600; }
+    article h2 {
+      color: var(--ink); font-size: 26px; font-weight: 700;
+      margin-top: 56px; margin-bottom: 20px; letter-spacing: -0.4px;
+    }
+    article .pullquote {
+      font-size: 22px; line-height: 1.5;
+      color: var(--ink); font-weight: 500;
+      border-left: 4px solid var(--primary);
+      padding: 8px 0 8px 28px;
+      margin: 36px 0;
+    }
+
+    .signature {
+      max-width: 720px; margin: 56px auto 0;
+      padding: 32px 24px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    .signature strong { display: block; color: var(--ink); font-size: 18px; margin-bottom: 6px; }
+    .signature span { color: var(--ink-mute); font-size: 14px; }
+
+    .cta-card {
+      max-width: 720px; margin: 56px auto 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 40px 32px; text-align: center;
+    }
+    .cta-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .cta-card p { font-size: 16px; color: var(--ink-soft); margin-bottom: 24px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ink); color: #fff;
+      padding: 14px 24px; border-radius: 12px;
+      font-weight: 600; font-size: 15px;
+    }
+    .btn-primary:hover { background: var(--primary); text-decoration: none; }
+
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.7);
+      padding: 40px 24px;
+      text-align: center; font-size: 14px;
+      margin-top: 80px;
+    }
+    footer a { color: rgba(255,255,255,0.85); margin: 0 12px; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">&#9829;</span>
+        Know My Child
+      </a>
+      <div class="nav-links">
+        <a href="/#how">How it works</a>
+        <a href="/#features">Features</a>
+        <a href="about.html">About</a>
+        <a href="/#get" class="nav-cta">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">Why we built it</span>
+    <h1>The story behind Know My Child.</h1>
+    <p class="subhead">From a school psychologist who watched the gap in care, every single day &mdash; and a parent who decided to close it.</p>
+  </header>
+
+  <article>
+    <p>
+      I've spent my career as a school psychologist protecting and advocating for children &mdash; especially those with special needs. In schools, we build systems around them: data, documentation, communication, and intervention plans. When something is off, we catch it. We respond. We support.
+    </p>
+
+    <p>
+      But I kept seeing a different reality outside of school.
+    </p>
+
+    <p>
+      When a parent drops their child off at a church daycare, a gym childcare center, or with a babysitter &mdash; those systems disappear. There's no structured documentation. No consistent communication. No shared understanding of what a child needs in the moment.
+    </p>
+
+    <p>
+      And that gap matters. Because the same level of awareness, communication, and early intervention that helps children succeed in school is often missing in the everyday environments where they spend so much of their time.
+    </p>
+
+    <h2>The other gap most people don't see</h2>
+
+    <p>
+      Even inside schools and daycares, parents are often <strong>on the outside looking in</strong> &mdash; receiving delayed updates, limited context, and little ability to actively shape what's happening with their child in real time.
+    </p>
+
+    <p>
+      As both a psychologist and a parent, I couldn't ignore that.
+    </p>
+
+    <p class="pullquote">
+      Know My Child was created to do more than extend support beyond school. It was built to put the power back into the hands of parents.
+    </p>
+
+    <h2>What changes when information flows in real time</h2>
+
+    <p>
+      Through real-time documentation and communication, parents and caregivers can share critical insights the moment they happen &mdash; what a child experienced, what triggered a behavior, what helped them regulate, what they need next. Educators and caregivers no longer work in isolation. They work with clarity.
+    </p>
+
+    <p>
+      And that changes everything. Because when information flows in real time, support becomes proactive &mdash; not reactive.
+    </p>
+
+    <h2>It also goes beyond the classroom</h2>
+
+    <p>
+      The same circle of care that supports a child at school can now help parents plan everyday life. Whether it's a trip to the zoo, a visit to a museum, or a new environment, the app provides guidance &mdash; what to prepare for, what to bring, what to avoid, and how to set the child up for success based on their unique needs and patterns.
+    </p>
+
+    <p>
+      This isn't just communication. It's <strong>continuous understanding.</strong>
+    </p>
+
+    <p>
+      It's a system that connects school, home, and the real world &mdash; so every adult in a child's life is informed, aligned, and equipped to support them in the moment and plan for what comes next.
+    </p>
+
+    <p class="pullquote">
+      Because children don't only need support at school. They need to be understood &mdash; everywhere they go.
+    </p>
+
+    <div class="signature">
+      <strong>Dr. Philip Van Hickman, Ed.D., Ed.S., NCSP</strong>
+      <span>Founder &middot; MindAble Solutions LLC &middot; Nationally Certified School Psychologist</span>
+    </div>
+
+    <div class="cta-card">
+      <h3>Build your child's Circle today.</h3>
+      <p>Free in v1.0. No subscription, no ads, no in-app purchases.</p>
+      <a href="https://apps.apple.com/app/know-my-child/id6762037638" class="btn-primary" target="_blank" rel="noopener">
+        Download on the App Store
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </article>
+
+  <footer>
+    &copy; 2026 MindAble Solutions LLC<br>
+    <a href="/">Home</a> &middot;
+    <a href="privacy.html">Privacy Policy</a> &middot;
+    <a href="terms.html">Terms of Service</a> &middot;
+    <a href="support.html">Support</a>
+  </footer>
+
+</body>
+</html>

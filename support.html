@@ -3,79 +3,284 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support - Know My Child</title>
+  <meta name="description" content="Get help with Know My Child — contact support, browse FAQs, learn how to share, ask the Circle, and manage your data.">
+  <meta name="theme-color" content="#5B4FC4">
+  <title>Support — Know My Child</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.7; background: #faf9fb; }
-    .header { background: #5B4FC4; color: #fff; padding: 40px 20px; text-align: center; }
-    .header h1 { font-size: 28px; font-weight: 700; }
-    .header p { margin-top: 8px; opacity: 0.85; font-size: 15px; }
-    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
-    h2 { font-size: 20px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; color: #5B4FC4; }
-    p, li { font-size: 15px; margin-bottom: 12px; }
-    ul { padding-left: 24px; }
-    li { margin-bottom: 8px; }
-    a { color: #5B4FC4; }
-    .nav { text-align: center; padding: 16px; font-size: 14px; }
-    .nav a { margin: 0 12px; }
-    .contact-card { background: #fff; border: 1px solid #e0dce8; border-radius: 12px; padding: 24px; margin-top: 20px; }
-    .contact-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-    .faq-item { background: #fff; border: 1px solid #e0dce8; border-radius: 12px; padding: 20px; margin-top: 16px; }
-    .faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #1a1a2e; }
-    .faq-item p { margin-bottom: 0; color: #555; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #5B4FC4;
+      --primary-dark: #3E35A0;
+      --primary-muted: #EAE8F9;
+      --bg: #FAFAFD;
+      --surface: #FFFFFF;
+      --ink: #1A1635;
+      --ink-soft: #4B466A;
+      --ink-mute: #7B7595;
+      --line: #E8E6F0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink); line-height: 1.55; background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 17px; color: var(--ink);
+    }
+    .brand-mark {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary-muted);
+      display: grid; place-items: center;
+      color: var(--primary); font-size: 18px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--ink-soft); font-weight: 500; font-size: 15px; }
+    .nav-links a:hover { color: var(--primary); text-decoration: none; }
+    .nav-cta {
+      background: var(--ink); color: #fff;
+      padding: 9px 16px; border-radius: 999px;
+      font-weight: 600; font-size: 14px;
+    }
+    .nav-cta:hover { background: var(--primary); text-decoration: none; }
+    @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+    .hero {
+      max-width: 760px; margin: 0 auto;
+      padding: 72px 24px 32px; text-align: center;
+    }
+    .eyebrow {
+      display: inline-block; background: var(--primary-muted);
+      color: var(--primary); padding: 6px 14px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 48px);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+    }
+    .subhead {
+      font-size: 18px; color: var(--ink-soft);
+      margin-top: 18px; line-height: 1.6;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+
+    .contact {
+      background: linear-gradient(135deg, var(--primary-muted) 0%, #f3f1fb 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin-top: 24px;
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px;
+      align-items: center;
+    }
+    .contact-text h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+    .contact-text p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+    .contact-action { text-align: right; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ink); color: #fff;
+      padding: 14px 22px; border-radius: 12px;
+      font-weight: 600; font-size: 15px;
+    }
+    .btn-primary:hover { background: var(--primary); text-decoration: none; }
+    .response-time {
+      display: block; margin-top: 12px;
+      color: var(--ink-mute); font-size: 13px;
+    }
+    @media (max-width: 640px) {
+      .contact { grid-template-columns: 1fr; text-align: center; }
+      .contact-action { text-align: center; }
+    }
+
+    .section-title {
+      font-size: 26px; font-weight: 700;
+      margin: 56px 0 8px; color: var(--ink);
+      letter-spacing: -0.4px;
+    }
+    .section-sub {
+      color: var(--ink-soft); font-size: 16px; margin-bottom: 24px;
+    }
+
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 12px;
+    }
+    .faq summary {
+      list-style: none; cursor: pointer;
+      font-size: 17px; font-weight: 600; color: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+'; font-size: 24px; font-weight: 400; color: var(--ink-mute);
+      transition: transform 0.2s;
+    }
+    .faq[open] summary::after { content: '\2212'; transform: rotate(180deg); }
+    .faq-body {
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft); font-size: 15px; line-height: 1.7;
+    }
+    .faq-body p { margin-bottom: 10px; }
+    .faq-body p:last-child { margin-bottom: 0; }
+
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.7);
+      padding: 40px 24px;
+      text-align: center; font-size: 14px;
+      margin-top: 80px;
+    }
+    footer a { color: rgba(255,255,255,0.85); margin: 0 12px; }
+    footer a:hover { color: #fff; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>Support</h1>
-    <p>Know My Child - MindAble Solutions LLC</p>
-  </div>
-  <div class="nav">
-    <a href="index.html">Home</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="support.html">Support</a>
-  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="brand">
+        <span class="brand-mark">&#9829;</span>
+        Know My Child
+      </a>
+      <div class="nav-links">
+        <a href="/#how">How it works</a>
+        <a href="/#features">Features</a>
+        <a href="about.html">About</a>
+        <a href="/#get" class="nav-cta">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">Support</span>
+    <h1>We're here when you need us.</h1>
+    <p class="subhead">Reach out anytime, or browse the most common questions below.</p>
+  </header>
+
   <div class="container">
-    <p>We're here to help. If you have questions, feedback, or need assistance with Know My Child, reach out using the contact information below.</p>
 
-    <div class="contact-card">
-      <h3>Contact Us</h3>
-      <p>Email: <a href="mailto:support@knowmychild.app">support@knowmychild.app</a></p>
-      <p>We aim to respond to all inquiries within 48 hours.</p>
+    <div class="contact">
+      <div class="contact-text">
+        <h2>Talk to a real person</h2>
+        <p>Email <a href="mailto:support@knowmychild.app">support@knowmychild.app</a>. A human reads every message.</p>
+      </div>
+      <div class="contact-action">
+        <a href="mailto:support@knowmychild.app" class="btn-primary">
+          Email Support
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <span class="response-time">Typical reply within 24&ndash;48 hours</span>
+      </div>
     </div>
 
-    <h2>Frequently Asked Questions</h2>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-sub">If you don't see your question here, just email us &mdash; we'd rather answer it than leave you guessing.</p>
 
-    <div class="faq-item">
-      <h3>How do I share my child's profile with a caregiver?</h3>
-      <p>Go to the Sharing tab, tap the + button, and enter the caregiver's name and role. You can choose which sections to share and whether to include them in your Circle. They'll receive an invite link to create their caregiver account.</p>
-    </div>
+    <details class="faq">
+      <summary>How do I share my child's profile with a caregiver?</summary>
+      <div class="faq-body">
+        <p>Open the Sharing tab, tap the <strong>+</strong> button, and enter the caregiver's name and role (teacher, sitter, family, therapist, etc.). You'll be asked which sections to share and whether to include their notes in your Circle. They'll get a secure invite link to create a free caregiver account.</p>
+        <p>You can revoke access at any time from the same tab &mdash; the link stops working immediately.</p>
+      </div>
+    </details>
 
-    <div class="faq-item">
-      <h3>Can I control what information caregivers see?</h3>
-      <p>Yes. You have full control over sharing. You decide which caregivers have access and can revoke access at any time from the Sharing tab.</p>
-    </div>
+    <details class="faq">
+      <summary>Can I control what each caregiver sees?</summary>
+      <div class="faq-body">
+        <p>Yes. Sharing is per-section, per-caregiver. The babysitter can see "Foods" and "What Calms Me" without seeing medical history. The teacher can see communication and routines. You decide every time.</p>
+      </div>
+    </details>
 
-    <div class="faq-item">
-      <h3>Is Ask the Circle a replacement for medical advice?</h3>
-      <p>No. Ask the Circle provides informational guidance based on your child's profile. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult qualified health providers for medical questions.</p>
-    </div>
+    <details class="faq">
+      <summary>What is "Ask the Circle"?</summary>
+      <div class="faq-body">
+        <p>Ask the Circle is an AI-powered support feature that answers your questions about your child by drawing on the profile and observations you've recorded. It's designed to think like a thoughtful friend who happens to have training in child psychology, behavior, and family support.</p>
+        <p>It is <strong>not</strong> a replacement for medical advice, diagnosis, or treatment. Always consult qualified providers for clinical questions.</p>
+      </div>
+    </details>
 
-    <div class="faq-item">
-      <h3>How do I cancel my subscription?</h3>
-      <p>Subscriptions are managed through Apple. Go to Settings > Apple ID > Subscriptions on your iPhone, find Know My Child, and tap Cancel Subscription. Your access continues until the end of the current billing period.</p>
-    </div>
+    <details class="faq">
+      <summary>What data is sent when I use Ask the Circle?</summary>
+      <div class="faq-body">
+        <p>The first time you tap Ask the Circle, the app shows a consent screen that lists exactly what gets sent and to whom. In short: your question, your child's first name and basic profile data, and your recent observations are sent to <strong>Anthropic, PBC</strong> (the operator of the Claude AI API) to generate a response. Your name, email, and payment information are never sent. You can revoke this consent at any time in Settings.</p>
+        <p>See our <a href="privacy.html#:~:text=AI-Assisted">privacy policy</a> for the full list.</p>
+      </div>
+    </details>
 
-    <div class="faq-item">
-      <h3>How do I delete my account?</h3>
-      <p>Contact us at <a href="mailto:support@knowmychild.app">support@knowmychild.app</a> to request account deletion. All personal data and child profile data will be permanently deleted within 30 days.</p>
-    </div>
+    <details class="faq">
+      <summary>Is Know My Child a paid app?</summary>
+      <div class="faq-body">
+        <p>Version 1.0 is completely free. No subscription, no ads, no in-app purchases. We may introduce optional premium features in a future version &mdash; if and when we do, they'll be sold through Apple's standard In-App Purchase system, and the core features will stay free.</p>
+      </div>
+    </details>
 
-    <div class="faq-item">
-      <h3>Is my child's data safe?</h3>
-      <p>Yes. All data is encrypted in transit and at rest. We use row-level security to ensure only authorized users can access your data. You control all sharing, and no data is sold to third parties. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
-    </div>
+    <details class="faq">
+      <summary>How do I export or print my child's profile?</summary>
+      <div class="faq-body">
+        <p>Open Settings &rarr; <strong>Export Profile PDF</strong>. Pick which sections to include, tap Export, and you'll get a beautifully formatted PDF you can text, email, AirDrop, or print. Perfect for the new sitter, a substitute teacher, or an ER intake form.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Is my child's data safe?</summary>
+      <div class="faq-body">
+        <p>Yes. All data is encrypted in transit (TLS) and at rest. Row-level security policies ensure no one but you and the caregivers you've authorized can read your data. We never sell, rent, or trade personal information. The full <a href="privacy.html">privacy policy</a> spells out everything.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>How do I delete my account and all data?</summary>
+      <div class="faq-body">
+        <p>Open Settings &rarr; <strong>Delete Account</strong> and confirm. All personal data, child profiles, observations, and shared records are permanently deleted from our servers within 30 days. If you'd prefer to email us instead, write to <a href="mailto:support@knowmychild.app">support@knowmychild.app</a>.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>Which devices does the app run on?</summary>
+      <div class="faq-body">
+        <p>Know My Child runs on iPhone and iPad with iOS 16 or later. Android support is on the roadmap.</p>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>I have an idea or feature request. Where do I send it?</summary>
+      <div class="faq-body">
+        <p>Email <a href="mailto:support@knowmychild.app">support@knowmychild.app</a> with the subject line "Feature idea." We read every one. The app is shaped by parents and caregivers in the trenches &mdash; that includes you.</p>
+      </div>
+    </details>
+
   </div>
+
+  <footer>
+    &copy; 2026 MindAble Solutions LLC<br>
+    <a href="/">Home</a> &middot;
+    <a href="about.html">About</a> &middot;
+    <a href="privacy.html">Privacy Policy</a> &middot;
+    <a href="terms.html">Terms of Service</a>
+  </footer>
+
 </body>
 </html>

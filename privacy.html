@@ -60,8 +60,33 @@
       <li><strong>Legal requirements:</strong> If required by law or to protect the safety of our users</li>
     </ul>
 
-    <h2>4. AI Features (Ask the Circle)</h2>
-    <p>The Ask the Circle feature uses AI to provide guidance based on your child's profile. Your child's data is sent to our AI provider solely to generate responses to your questions. This data is not used to train AI models and is not retained by the AI provider after generating a response.</p>
+    <h2>4. AI-Assisted Insights (Ask the Circle)</h2>
+    <p>Know My Child includes an optional feature called <strong>Ask the Circle</strong> that uses a third-party artificial-intelligence service to generate written responses to questions you ask about your child.</p>
+
+    <p><strong>Third-party AI provider.</strong> When you choose to use Ask the Circle, the data described below is transmitted from our servers to <strong>Anthropic, PBC</strong> (San Francisco, CA, USA), the operator of the Claude large-language-model API (<a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>). Anthropic processes the request and returns a generated text response.</p>
+
+    <p><strong>Data sent to Anthropic for each Ask the Circle question.</strong> Each request includes:</p>
+    <ul>
+      <li>your question text;</li>
+      <li>the selected child's first name (and nickname if set), pronouns, and date of birth;</li>
+      <li>any diagnoses or labels you have stored on the child's profile;</li>
+      <li>the contents of profile sections you have filled in (e.g. "About Me", "Sensory Triggers", "What Calms Me", "Routines", etc.);</li>
+      <li>up to your last 30 day-rating observations and notes (date, rating, tags, note text);</li>
+      <li>up to 20 caregiver notes that you have explicitly approved for inclusion in Ask the Circle.</li>
+    </ul>
+    <p>The request does <strong>not</strong> include your name, email address, account credentials, payment information, your photos, your home address, or any data about other children on your account that you did not select.</p>
+
+    <p><strong>What Anthropic does with the data.</strong> Per Anthropic's Commercial Terms of Service and Privacy Policy in effect at the time of writing, Anthropic processes API request data to generate the response and for safety/abuse monitoring. Anthropic states that data submitted through its API is <strong>not used to train its generative models</strong>. Anthropic offers contractual data protections substantially equivalent to those described in this Privacy Policy.</p>
+
+    <p><strong>Your control over this feature.</strong></p>
+    <ul>
+      <li>Ask the Circle is <strong>off by default</strong>. The first time you tap "Ask the Circle", the app shows an in-app consent screen that lists exactly what will be sent to Anthropic and asks you to agree before any data leaves the app.</li>
+      <li>You can revoke consent at any time in <strong>Settings &rarr; AI Assistant Data Sharing</strong>. Revoking consent prevents any further data from being sent to Anthropic.</li>
+      <li>You may continue to use every other feature of Know My Child without ever enabling Ask the Circle.</li>
+    </ul>
+
+    <p><strong>Retention.</strong> A short audit-log entry recording that you used Ask the Circle (timestamp, question length, prompt category) is retained on our servers for as long as your account is active so you can review it under "View Audit Log". The full text of the question and generated answer is retained only for as long as needed to display the conversation in the current app session and is not persisted to our database.</p>
+
     <p><strong>Important:</strong> Ask the Circle does not provide medical advice. All responses are for informational purposes only.</p>
 
     <h2>5. Data Security</h2>
@@ -106,7 +131,7 @@
       Email: <a href="mailto:support@knowmychild.app">support@knowmychild.app</a>
     </p>
 
-    <p class="updated">Last updated: April 12, 2026</p>
+    <p class="updated">Last updated: May 1, 2026</p>
   </div>
 </body>
 </html>

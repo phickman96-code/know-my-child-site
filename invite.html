@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-itunes-app" content="app-id=6762037638">
+  <title>Care Profile Invite &middot; Know My Child</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1a1a2e;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #5B4FC4 0%, #7B6FE0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    .ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 32px;
+      border: 5px solid #E8273A;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heart { font-size: 28px; color: #E8273A; }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a2e;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    p { font-size: 14px; color: #5b6270; margin-bottom: 22px; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.15s ease;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn:active { opacity: 0.85; }
+    .btn-primary { background: #5B4FC4; color: #fff; margin-bottom: 10px; }
+    .btn-secondary { background: #f3f1f8; color: #5B4FC4; }
+    .fallback {
+      display: none;
+      margin-top: 8px;
+      padding-top: 22px;
+      border-top: 1px solid #e8e5ee;
+    }
+    .fallback h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .fallback p { font-size: 13px; margin-bottom: 14px; }
+    small {
+      display: block;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #9aa0ad;
+    }
+    .error h1 { color: #E8273A; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="ring"><span class="heart">&hearts;</span></div>
+    <h1 id="title">Care Profile Invite</h1>
+    <p id="message">You've been invited to view a child's care profile on Know My Child.</p>
+
+    <a href="#" class="btn btn-primary" id="openBtn" onclick="openApp(event)">Open Know My Child</a>
+
+    <div class="fallback" id="fallback">
+      <h2>Don't have the app yet?</h2>
+      <p>Install Know My Child from the App Store, then tap the link in your text again.</p>
+      <a class="btn btn-secondary" href="https://apps.apple.com/app/know-my-child/id6762037638">Get on the App Store</a>
+    </div>
+
+    <small>Secure care-profile invites by Know My Child</small>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var token  = params.get('token');
+      var dev    = params.get('dev') === '1';
+      var scheme = dev ? 'exp+know-my-child' : 'knowmychild';
+
+      if (!token) {
+        document.getElementById('card').classList.add('error');
+        document.getElementById('title').textContent = 'Link Incomplete';
+        document.getElementById('message').textContent = 'This invite link is missing a token. Ask the parent to send you a fresh link from the Know My Child app.';
+        document.getElementById('openBtn').style.display = 'none';
+        document.getElementById('fallback').style.display = 'block';
+        return;
+      }
+
+      var deepLink = scheme + '://accept?token=' + encodeURIComponent(token);
+      window._kmcDeepLink = deepLink;
+
+      // Try to open the app immediately. iOS only allows http→custom-scheme
+      // navigation in two situations: a user-tap, or a JS navigation that
+      // happens shortly after page load. We attempt it on page load, and
+      // also expose a button-press path via openApp() for browsers that
+      // suppress the auto-open.
+      setTimeout(function () { window.location.href = deepLink; }, 100);
+
+      // If after ~1.6s we're still on this page, the app probably isn't
+      // installed (or the auto-open got blocked). Reveal the App Store CTA.
+      setTimeout(function () {
+        if (!document.hidden) {
+          document.getElementById('fallback').style.display = 'block';
+        }
+      }, 1600);
+    })();
+
+    function openApp(e) {
+      e.preventDefault();
+      if (window._kmcDeepLink) {
+        window.location.href = window._kmcDeepLink;
+      }
+    }
+  </script>
+</body>
+</html>

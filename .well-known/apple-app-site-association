@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6Y25ZK5K6P.com.knowmychild.app",
+        "paths": ["/invite", "/invite/*"]
+      }
+    ]
+  }
+}

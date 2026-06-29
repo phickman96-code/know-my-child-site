@@ -139,6 +139,31 @@
     .foot-col a:hover { color: #fff; text-decoration: none; }
     .foot-bottom { max-width: var(--max); margin: 40px auto 0; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.55); }
     @media (max-width: 720px) { .foot-inner { grid-template-columns: 1fr 1fr; gap: 32px; } .foot-brand { grid-column: 1 / -1; } }
+
+    /* Cinematic full-bleed photo bands */
+    .cinematic { position: relative; padding: 0; }
+    .cinematic > img { width: 100%; height: clamp(360px, 48vh, 540px); object-fit: cover; display: block; }
+    .cinematic .overlay { position: absolute; inset: 0; display: flex; align-items: center; background: linear-gradient(90deg, rgba(21,17,46,0.78) 0%, rgba(21,17,46,0.42) 55%, rgba(21,17,46,0.05) 100%); }
+    .cinematic .wrap { padding: 0 24px; }
+    .cinematic h2 { color: #fff; max-width: 560px; }
+    .cinematic p { color: rgba(255,255,255,0.92); max-width: 520px; margin-top: 14px; font-size: clamp(16px,1.4vw,19px); line-height: 1.6; }
+    .cinematic .section-eyebrow { color: #C9C2F2; }
+    @media (max-width: 720px) { .cinematic .overlay { background: linear-gradient(180deg, rgba(21,17,46,0.55) 0%, rgba(21,17,46,0.78) 100%); } }
+
+    /* Motion — hover lifts (always) */
+    .feature, .pain-card, .price-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .feature:hover, .pain-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -20px rgba(91,79,196,0.32); }
+    .phone img { transition: transform 0.4s cubic-bezier(.2,.7,.2,1); }
+    .phone:hover img { transform: scale(1.02); }
+
+    /* Motion — entrance + gentle float (respects reduced-motion; only active once JS adds .anim) */
+    @media (prefers-reduced-motion: no-preference) {
+      html.anim .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+      html.anim .reveal.in { opacity: 1; transform: none; }
+      .phone { animation: kmc-float 6.5s ease-in-out infinite; }
+      .phone:hover { animation-play-state: paused; }
+      @keyframes kmc-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    }
   </style>
 </head>
 <body>
@@ -245,6 +270,16 @@
     </div>
   </section>
 
+  <!-- Cinematic band -->
+  <section class="cinematic">
+    <img src="img/museum-outing.jpg" alt="A father and young son walking through a museum together in soft light">
+    <div class="overlay"><div class="wrap">
+      <div class="section-eyebrow">Everyday life, prepared for</div>
+      <h2>Every new place, a little less daunting.</h2>
+      <p>From the museum to the family reunion, you walk in ready &mdash; and so does everyone helping you.</p>
+    </div></div>
+  </section>
+
   <!-- Showcase 3: Profile + Documents -->
   <section class="show">
     <div class="show-inner">
@@ -334,6 +369,16 @@
     </div>
   </section>
 
+  <!-- Cinematic band -->
+  <section class="cinematic">
+    <img src="img/caregiver-grandmother.jpg" alt="A grandmother sitting on the floor, gently playing with her young grandchild">
+    <div class="overlay"><div class="wrap">
+      <div class="section-eyebrow">The circle of care</div>
+      <h2>Everyone who loves them, finally in sync.</h2>
+      <p>The understanding that lives in your head now travels with your child &mdash; to grandma&rsquo;s house, and everywhere else.</p>
+    </div></div>
+  </section>
+
   <!-- Founder -->
   <section id="founder" class="founder">
     <div class="founder-card">
@@ -384,6 +429,21 @@
       <span>Made with care in the United States.</span>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var d = document;
+      d.documentElement.classList.add('anim');
+      if (!('IntersectionObserver' in window)) return;
+      var sel = '.pain-card, .show-text, .phone-wrap, .feature, .price-card, .founder-card, .cinematic .wrap, .trustbar-inner';
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      d.querySelectorAll(sel).forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
